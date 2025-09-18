@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lita de tarea interativa</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        li:last-child {
+            border-bottom: none;
+        }
+        
+        button {
+            padding: 5px 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de Tareas</h1>
+    <div id="root"></div>
+
+    <script>
+        let tareas = [
+            "Aprender react",
+            "aprender php",
+            "Crear una lista de tareas",
+            "apreder GitHub"
+        ];
+
+        const root = document.getElementById('root');
+        const lista = document.createElement('ul');
+        root.appendChild(lista);
+
+        function renderizarTareas() {
+            lista.innerHTML = '';
+
+            tareas.forEach((tareaTexto, index) => {
+                const item = document.createElement('li');
+                item.textContent = tareaTexto;
+
+                const botonEliminar = document.createElement('button');
+                botonEliminar.textContent = "Eliminar";
+
+                botonEliminar.addEventListener('click', () => {
+                    tareas.splice(index, 1);
+                    renderizarTareas();
+                });
+
+                item.appendChild(botonEliminar);
+                lista.appendChild(item);
+            });
+        }
+
+        renderizarTareas();
+    </script>
+</body>
+
+</html>

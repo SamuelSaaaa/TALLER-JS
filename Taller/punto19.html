@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organi</title>
+</head>
+
+<body>
+    <h1>Lista de Tareas</h1>
+    <div id="root"></div>
+
+    <script>
+        const tareas = [
+            "Aprender JavaScript",
+            "Practicar DOM",
+            "Entender los eventos"
+        ];
+
+        const root = document.getElementById('root');
+        const lista = document.createElement('ul');
+        root.appendChild(lista);
+
+        lista.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const item = event.target.closest('li');
+                const index = Array.from(lista.children).indexOf(item);
+
+                if (index > -1) {
+                    tareas.splice(index, 1);
+                    renderizarTareas();
+                }
+            }
+        });
+
+        function renderizarTareas() {
+            lista.innerHTML = '';
+            tareas.forEach(tareaTexto => {
+                const item = document.createElement('li');
+                item.innerHTML = `<span>${tareaTexto}</span><button>Eliminar</button>`;
+                lista.appendChild(item);
+            });
+        }
+
+        renderizarTareas();
+    </script>
+</body>
+
+</html>

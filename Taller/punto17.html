@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listadetareas</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        const tareas = [
+            "Aprender react",
+            "aprender php",
+            "Crear una lista de tareas",
+            "apreder GitHub"
+        ];
+
+        const root = document.getElementById('root');
+
+        const lista = document.createElement('ul');
+        lista.style.fontFamily = 'Arial, sans-serif';
+        lista.style.fontSize = '1.2em';
+        lista.style.listStyleType = 'disc';
+        lista.style.paddingLeft = '20px';
+
+        tareas.forEach(tareaTexto => {
+            const item = document.createElement('li');
+            item.textContent = tareaTexto;
+            item.style.marginBottom = '8px';
+            item.style.color = '#333';
+
+            lista.appendChild(item);
+        });
+
+        root.appendChild(lista);
+    </script>
+</body>
+
+</html>
